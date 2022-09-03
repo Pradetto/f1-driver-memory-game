@@ -3,6 +3,7 @@ import React, { useState, Fragment, useRef } from "react";
 const Header = () => {
   const driverYear = useRef();
   const [drivers, setDrivers] = useState([]);
+  //   const [rawWikiData, setRawWikiData] = useState([]);
   const getDrivers = async (year) => {
     const response = await fetch(
       "https://ergast.com/api/f1/" + year + "/drivers.json"
@@ -23,17 +24,43 @@ const Header = () => {
     getDriversImgs();
   };
 
-  const getDriversImgs = () => {
-    drivers.map(async (driver) => {
-      let wikiPageName = driver.wikipedia.split("/").slice(-1);
-      let wiki_url =
-        "https://en.wikipedia.org/w/api.php?action=query&titles=" +
-        wikiPageName +
-        "&prop=pageimages&format=json&pithumbsize=500";
-      const response = await fetch(wiki_url);
-      const imgUrl = await response.json();
-      console.log(imgUrl);
+  async function getDriversImgs() {
+    const responses = await Promise.all(
+      drivers.map((driver) => {
+        let wikiPageName = driver.wikipedia.split("/").slice(-1).toString();
+        let wiki_url =
+          "https://en.wikipedia.org/w/api.php?origin=*&action=query&titles=" +
+          wikiPageName +
+          "&prop=pageimages&format=json&pithumbsize=500";
+        return fetch(wiki_url);
+      })
+    );
+    await Promise.all(responses.map((r) => r.json())).then((json) =>
+      retrievingImgUrl(json)
+    );
+  }
+
+  const retrievingImgUrl = async (data) => {
+    console.log(data);
+    const strippingData = data.map((d) => {
+      return d.query.pages;
     });
+    // console.log(strippingData);
+    const urls = strippingData.map((d) => {
+      const k = Object.keys(d)[0];
+      try {
+        return d[k].thumbnail.source;
+      } catch {
+        return null;
+      }
+    });
+
+    setDrivers((prev) => {
+      return prev.map((item, idx) => {
+        return { ...item, image: urls[idx] };
+      });
+    });
+    console.log("you made it here");
   };
 
   const driverYearHandler = (e) => {
@@ -48,9 +75,23 @@ const Header = () => {
         <input type="text" id="year" ref={driverYear} />
         <button>Get Drivers</button>
       </form>
-      <ul>
+      <ul style={{ marginTop: "1rem" }}>
         {drivers.map((driver) => (
-          <li key={driver.id}>{driver.firstName + " " + driver.lastName}</li>
+          <li
+            key={driver.id}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              maxWidth: "10rem",
+              maxHeight: "20rem",
+              border: "5px solid black",
+              gap: "1rem",
+              marginTop: "1rem",
+            }}
+          >
+            {driver.image ? <img src={driver.image} /> : " nothing found"}
+            {driver.firstName + " " + driver.lastName}
+          </li>
         ))}
       </ul>
     </header>
