@@ -1,6 +1,6 @@
 import React, { useState, Fragment, useRef } from "react";
 
-const Header = () => {
+const Header = (props) => {
   const driverYear = useRef();
   const [drivers, setDrivers] = useState([]);
   //   const [rawWikiData, setRawWikiData] = useState([]);
@@ -73,7 +73,7 @@ const Header = () => {
       <form onSubmit={driverYearHandler}>
         <label htmlFor="year">Enter Year:</label>
         <input type="text" id="year" ref={driverYear} />
-        <button>Get Drivers</button>
+        <button onClick={props.getDrivers}>Get Drivers</button>
       </form>
       <ul style={{ marginTop: "1rem" }}>
         {drivers.map((driver) => (
