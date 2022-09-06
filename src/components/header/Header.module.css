@@ -1,0 +1,15 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+
+    background-color: #e3e0cf;
+    /* background-image: url("https://www.freewebheaders.com/wp-content/gallery/auto-racing/auto-racing-live-sport-website-header.jpg"); */
+    background-image: url("https://www.tibco.com/sites/tibco/files/2021-04/main-banner.jpeg");
+    background-repeat: no-repeat;
+    background-size: 100vw 20vh;
+    min-height: 15vh;
+    max-height: 17vh;
+    
+    padding: 1rem;
+}
+

@@ -1,0 +1,15 @@
+.title {
+    font-size: clamp(12px, 2vw, 1.75rem);
+    color: orange;
+    max-width: 45vw;
+}
+
+.title-name {
+    margin: 0;
+    padding: 0;
+}
+
+.rules {
+    margin: 0;
+    padding: 0;
+}

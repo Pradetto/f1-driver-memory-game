@@ -1,0 +1,39 @@
+.background {
+    background: #304352;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #304352, #d7d2cc);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #304352, #d7d2cc);
+    min-height: 81vh;
+}
+.score {
+    display: flex;
+    justify-content: center;
+    color: orange;
+    font-size: 1.85rem;
+    font-weight: bold;
+}
+.main-container {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+
+    /* background-color: #c5d5cb; */
+    /* background-color: #85FFBD;
+    background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);; */
+
+}
+
+.drivers-list{
+    display: flex;
+    flex-direction: column;
+    max-width: 10rem;
+    max-height: 20rem;
+    border: 5px solid black;
+    gap: 1rem;
+    list-style: none;
+}
