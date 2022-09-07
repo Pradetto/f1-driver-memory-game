@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 
 // Components
 import Header from "./components/header/Header";
@@ -85,7 +85,16 @@ function App() {
         return { ...item, image: urls[idx] };
       });
     });
+    // renderDriverImages(urls);
   };
+
+  // const renderDriverImages = async (urls) => {
+  //   setDrivers((prev) => {
+  //     return prev.map((item, idx) => {
+  //       return { ...item, image: urls[idx] };
+  //     });
+  //   });
+  // };
 
   const showYearHandler = () => {
     setModal(false);
