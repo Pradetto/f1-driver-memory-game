@@ -5,13 +5,12 @@ import classes from "./Header.module.css";
 import Title from "./Title";
 
 const Header = (props) => {
-  const driverYear = useRef();
+  const driverYear = useRef("");
 
   const driverYearHandler = (e) => {
     e.preventDefault();
     const year = driverYear.current.value;
-    console.log(typeof year);
-    props.getDrivers(year.toString());
+    props.yearHandler(year);
   };
 
   return (
