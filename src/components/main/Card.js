@@ -9,7 +9,8 @@ const Card = (props) => {
   return (
     <div
       className={classes["card-container"]}
-      key={props.key}
+      key={props.id}
+      id={props.id}
       onClick={scoreHandler()}
     >
       <div className={classes.top}>

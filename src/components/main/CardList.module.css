@@ -4,7 +4,7 @@
     background: -webkit-linear-gradient(to right, #304352, #d7d2cc);
     /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #304352, #d7d2cc);
-    min-height: 81vh;
+    min-height: 95vh;
 }
 .score {
     display: flex;

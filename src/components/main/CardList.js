@@ -13,6 +13,7 @@ const CardList = (props) => {
           return (
             <Card
               key={driver.id}
+              id={driver.id}
               fullName={driver.firstName + " " + driver.lastName}
               image={driver.image}
               scoreHandler={scoreHandler}
@@ -25,16 +26,3 @@ const CardList = (props) => {
 };
 
 export default CardList;
-
-// <ul>
-//   {props.drivers.map((driver) => (
-//     <li key={driver.id} className={classes["drivers-list"]}>
-//       {driver.image ? (
-//         <img src={driver.image} />
-//       ) : (
-//         <img src="https://www.thesun.co.uk/wp-content/uploads/2019/06/the_stig_form_bbcjpg-JS4290682.jpg" />
-//       )}
-//       {driver.firstName + " " + driver.lastName}
-//     </li>
-//   ))}
-// </ul>;
