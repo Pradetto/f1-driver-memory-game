@@ -11,6 +11,7 @@ const Header = (props) => {
     e.preventDefault();
     const year = driverYear.current.value;
     props.yearHandler(year);
+    props.reset();
   };
 
   return (
@@ -22,7 +23,7 @@ const Header = (props) => {
           type="text"
           id="year"
           ref={driverYear}
-          placeholder="Enter Year:"
+          placeholder="Enter Year: 1950-Today"
         />
         <button onClick={props.getDrivers}>Get Drivers</button>
       </form>

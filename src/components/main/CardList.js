@@ -9,7 +9,9 @@ const CardList = (props) => {
   };
   return (
     <main className={classes.background}>
-      <div className={classes.score}>Score: 25 | High Score: 25</div>
+      <div className={classes.score}>
+        Score: {props.score} | High Score: {props.highScore}
+      </div>
       <div className={classes["main-container"]}>
         {props.drivers.map((driver) => {
           return (
