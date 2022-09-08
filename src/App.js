@@ -12,8 +12,8 @@ function App() {
   // const [modalShown, setModal] = useState(true);
   const [drivers, setDrivers] = useState([]);
   const [yearState, setYearState] = useState("2022");
-  // const [seenDrivers, setSeenDrivers] = useState([]);
-  // const [score, setScore] = useState([]);
+  const [seenDrivers, setSeenDrivers] = useState([]);
+  const [score, setScore] = useState([]);
 
   // function shuffle(a) {
   //   for (let i = a.length - 1; i > 0; i--) {
@@ -23,12 +23,13 @@ function App() {
   //   setDrivers(a);
   // }
 
-  // const scoreBoard = (id) => {
-  //   if (seenDrivers.includes(id)) {
-  //     // return gameOver();
-  //   } else {
-  //   }
-  // };
+  const scoreBoardHandler = (name) => {
+    if (seenDrivers.includes(name)) {
+      // return gameOver();
+    } else {
+    }
+    console.log(name);
+  };
 
   const yearHandler = (year) => {
     setYearState(year);
@@ -95,7 +96,7 @@ function App() {
   return (
     <Fragment>
       <Header yearHandler={yearHandler} />
-      <CardList drivers={drivers} />
+      <CardList drivers={drivers} scoreHandler={scoreBoardHandler} />
     </Fragment>
   );
 }
