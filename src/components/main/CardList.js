@@ -4,7 +4,9 @@ import Card from "./Card";
 import classes from "./CardList.module.css";
 
 const CardList = (props) => {
-  const scoreHandler = () => {};
+  const scoreHandler = (name) => {
+    props.scoreHandler(name);
+  };
   return (
     <main className={classes.background}>
       <div className={classes.score}>Score: 25 | High Score: 25</div>
