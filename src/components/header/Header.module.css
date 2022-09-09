@@ -13,3 +13,11 @@
     padding: 1rem;
 }
 
+input{
+    font-size: .75rem;
+    min-width: fit-content;
+}
+
+button {
+    background-color: orange;
+}

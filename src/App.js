@@ -9,33 +9,93 @@ import Modal from "./components/UI/Modal";
 import classes from "./App.module.css";
 
 function App() {
-  // const [modalShown, setModal] = useState(true);
+  const [modalShown, setModal] = useState(false);
   const [drivers, setDrivers] = useState([]);
   const [yearState, setYearState] = useState("2022");
   const [seenDrivers, setSeenDrivers] = useState([]);
-  const [score, setScore] = useState([]);
+  const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
+  const [newYear, setNewYear] = useState("");
+  const [error, setError] = useState(false);
 
-  // function shuffle(a) {
-  //   for (let i = a.length - 1; i > 0; i--) {
-  //     const j = Math.floor(Math.random() * (i + 1));
-  //     [a[i], a[j]] = [a[j], a[i]];
-  //   }
-  //   setDrivers(a);
-  // }
-
-  const scoreBoardHandler = (name) => {
-    if (seenDrivers.includes(name)) {
-      // return gameOver();
-    } else {
+  // ********** GAME FUNCTIONALITY START ************
+  const shuffle = (a) => {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
     }
-    console.log(name);
+    setDrivers(a);
   };
 
+  const scoreBoardHandler = (name) => {
+    console.log(name);
+    if (seenDrivers.includes(name)) {
+      gameOver();
+    } else {
+      //adding driver
+      setSeenDrivers((prev) => {
+        return [...prev, name];
+      });
+      //shuffling and will rerender mixed drivers
+      shuffle(drivers);
+      setScore((prev) => ++prev);
+    }
+    return;
+  };
+
+  const gameOver = () => {
+    console.log("you lost :)");
+    if (score > highScore) {
+      setHighScore(score);
+    }
+    showGameOverScreen();
+  };
+
+  // const clearBoardHandler = () => {
+  //   setSeenDrivers([]);
+  // };
+
+  // *********** GAME FUNCTIONALITY END ***********
+
+  // ******* VALID YEAR? *********
   const yearHandler = (year) => {
     setYearState(year);
   };
 
+  const gameOverYear = (e) => {
+    setNewYear(e.target.value);
+    console.log(newYear);
+  };
+
+  const validYear = () => {
+    const currentYear = new Date().getFullYear();
+    if (newYear.length === 4 && +newYear > 1949 && +newYear <= currentYear) {
+      console.log("Valid Year");
+      yearHandler(newYear);
+      setError(false);
+      return true;
+    } else {
+      console.log("Invalid Year");
+      return false;
+    }
+  };
+  // ******* Valid Year End ******
+
+  // ******** Modal Start **********
+  const showGameOverScreen = () => {
+    setModal(true);
+  };
+
+  const hideGameOverScreen = () => {
+    setModal(false);
+    setSeenDrivers([]);
+    setScore(0);
+  };
+  // ******** Modal End *********
+
+  // ********** API CALL START *************
   useEffect(() => {
+    // gameover()
     const getDrivers = async () => {
       const url = "https://ergast.com/api/f1/" + yearState + "/drivers.json";
       const response = await fetch(url);
@@ -90,13 +150,37 @@ function App() {
     getDrivers();
   }, [yearState]);
 
-  // const showYearHandler = () => {
-  //   setModal(false);
-  // };
+  // ******** API CALL END *****************
   return (
     <Fragment>
-      <Header yearHandler={yearHandler} />
-      <CardList drivers={drivers} scoreHandler={scoreBoardHandler} />
+      <Header yearHandler={yearHandler} reset={hideGameOverScreen} />
+      <CardList
+        drivers={drivers}
+        scoreHandler={scoreBoardHandler}
+        highScore={highScore}
+        score={score}
+      />
+      {modalShown && (
+        <Modal onClose={hideGameOverScreen}>
+          You lost G sorry. You got this many right! {seenDrivers.length}
+          <div>
+            <input type="text" id="newYear" onChange={gameOverYear} />
+            <button
+              type="submit"
+              onClick={() =>
+                validYear() ? hideGameOverScreen() : setError(true)
+              }
+            >
+              New Year?
+            </button>
+            {error && (
+              <p style={{ color: "red", fontWeight: "bold" }}>
+                Error: Please enter a valid year from 1950 - Current Year
+              </p>
+            )}
+          </div>
+        </Modal>
+      )}
     </Fragment>
   );
 }
