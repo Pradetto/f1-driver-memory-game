@@ -19,13 +19,15 @@ const Header = (props) => {
       <Title />
       <form onSubmit={driverYearHandler}>
         {/* <label htmlFor="year">Enter Year:</label> */}
-        <input
-          type="text"
-          id="year"
-          ref={driverYear}
-          placeholder="Enter Year: 1950-Today"
-        />
-        <button onClick={props.getDrivers}>Get Drivers</button>
+        <div>
+          <input
+            type="text"
+            id="year"
+            ref={driverYear}
+            placeholder="Enter Year: 1950-Today"
+          />
+          <button onClick={props.getDrivers}>Get Drivers</button>
+        </div>
       </form>
     </header>
   );
