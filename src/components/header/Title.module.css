@@ -1,5 +1,5 @@
 .title {
-    font-size: clamp(12px, 2vw, 1.75rem);
+    font-size: clamp(10px, 2vw, 1.75rem);
     color: orange;
     max-width: 45vw;
 }

@@ -48,6 +48,10 @@ button:hover {
         display: block;
         margin: 0.4em auto;
     }
+
+    .header {
+        min-height: 15vh;
+    }
 }
 
 .error {

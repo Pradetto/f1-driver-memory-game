@@ -8,8 +8,8 @@ const Title = (props) => {
     <div className={classes.title}>
       <h1 className={classes["title-name"]}>F1 Driver Memory Game</h1>
       <p className={classes.rules}>
-        Rules: Click on the image of the driver and do not repeat clicking on
-        the driver.
+        Rules: Submit a year from 1950 to this year. Click on the driver images
+        and do not click the driver again. Good luck!
       </p>
     </div>
   );
