@@ -16,8 +16,41 @@
 input{
     font-size: .75rem;
     min-width: fit-content;
+    padding: 0.35em 1.2em;
 }
 
+
 button {
+    display: inline-block;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid orange;
+    margin: .3em 0.3em 0.3em .3em;
+    border-radius: 0.12em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #FFFFFF;
+    text-align: center;
+    transition: all 0.2s;
     background-color: orange;
+    font-weight: bold;
+}
+
+button:hover {
+    color: #000000;
+    background-color: rgb(203, 111, 40);
+    border-color: rgb(203, 111, 40);
+}
+
+@media all and (max-width:30em) {
+    button {
+        display: block;
+        margin: 0.4em auto;
+    }
+}
+
+.error {
+    color: red;
+    font-weight: bold;
 }

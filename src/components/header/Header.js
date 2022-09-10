@@ -5,13 +5,28 @@ import classes from "./Header.module.css";
 import Title from "./Title";
 
 const Header = (props) => {
+  const [error, setError] = useState(false);
   const driverYear = useRef("");
 
   const driverYearHandler = (e) => {
     e.preventDefault();
     const year = driverYear.current.value;
-    props.yearHandler(year);
-    props.reset();
+    if (validYear(year)) {
+      props.yearHandler(year);
+      props.reset();
+    } else {
+      setError(true);
+    }
+  };
+
+  const validYear = (year) => {
+    const currentYear = new Date().getFullYear();
+    if (year.length === 4 && +year > 1949 && +year <= currentYear) {
+      setError(false);
+      return true;
+    } else {
+      return false;
+    }
   };
 
   return (
@@ -26,7 +41,8 @@ const Header = (props) => {
             ref={driverYear}
             placeholder="Enter Year: 1950-Today"
           />
-          <button onClick={props.getDrivers}>Get Drivers</button>
+          <button>Get Drivers</button>
+          {error && <span className={classes.error}>Error</span>}
         </div>
       </form>
     </header>

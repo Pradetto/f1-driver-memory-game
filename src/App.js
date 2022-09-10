@@ -28,7 +28,6 @@ function App() {
   };
 
   const scoreBoardHandler = (name) => {
-    console.log(name);
     if (seenDrivers.includes(name)) {
       gameOver();
     } else {
@@ -44,7 +43,6 @@ function App() {
   };
 
   const gameOver = () => {
-    console.log("you lost :)");
     if (score > highScore) {
       setHighScore(score);
     }
@@ -64,18 +62,15 @@ function App() {
 
   const gameOverYear = (e) => {
     setNewYear(e.target.value);
-    console.log(newYear);
   };
 
   const validYear = () => {
     const currentYear = new Date().getFullYear();
     if (newYear.length === 4 && +newYear > 1949 && +newYear <= currentYear) {
-      console.log("Valid Year");
       yearHandler(newYear);
       setError(false);
       return true;
     } else {
-      console.log("Invalid Year");
       return false;
     }
   };
@@ -150,10 +145,20 @@ function App() {
     getDrivers();
   }, [yearState]);
 
+  const errorHandler = () => {
+    setError(true);
+  };
+
   // ******** API CALL END *****************
   return (
     <Fragment>
-      <Header yearHandler={yearHandler} reset={hideGameOverScreen} />
+      <Header
+        yearHandler={yearHandler}
+        reset={hideGameOverScreen}
+        error={error}
+        validYear={validYear}
+        errorHandler={errorHandler}
+      />
       <CardList
         drivers={drivers}
         scoreHandler={scoreBoardHandler}
@@ -162,9 +167,14 @@ function App() {
       />
       {modalShown && (
         <Modal onClose={hideGameOverScreen}>
-          You lost G sorry. You got this many right! {seenDrivers.length}
+          Ohhhh noooo!!! You lost :( Your score was: {seenDrivers.length}
           <div>
-            <input type="text" id="newYear" onChange={gameOverYear} />
+            <input
+              type="text"
+              id="newYear"
+              onChange={gameOverYear}
+              placeholder="Enter Year: 1950-Today"
+            />
             <button
               type="submit"
               onClick={() =>
@@ -174,7 +184,7 @@ function App() {
               New Year?
             </button>
             {error && (
-              <p style={{ color: "red", fontWeight: "bold" }}>
+              <p className={classes.error}>
                 Error: Please enter a valid year from 1950 - Current Year
               </p>
             )}

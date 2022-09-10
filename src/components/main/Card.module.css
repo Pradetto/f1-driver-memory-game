@@ -13,6 +13,13 @@
     justify-content: center;
 }
 
+.card-container:hover {
+    width: 11em;
+    transform: scale(1.25);
+    box-shadow: 0 5px 15px hsl(0deg 0% 100% / 30%);
+    cursor: pointer;
+}
+
 .top {
     min-width: 100%;
     min-height: 80%;
