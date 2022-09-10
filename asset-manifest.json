@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/f1-driver-memory-game/static/css/main.dbc51954.css",
-    "main.js": "/f1-driver-memory-game/static/js/main.27699cbf.js",
+    "main.css": "/f1-driver-memory-game/static/css/main.c391a057.css",
+    "main.js": "/f1-driver-memory-game/static/js/main.dc633479.js",
     "static/js/787.81ffe0d6.chunk.js": "/f1-driver-memory-game/static/js/787.81ffe0d6.chunk.js",
     "index.html": "/f1-driver-memory-game/index.html",
-    "main.dbc51954.css.map": "/f1-driver-memory-game/static/css/main.dbc51954.css.map",
-    "main.27699cbf.js.map": "/f1-driver-memory-game/static/js/main.27699cbf.js.map",
+    "main.c391a057.css.map": "/f1-driver-memory-game/static/css/main.c391a057.css.map",
+    "main.dc633479.js.map": "/f1-driver-memory-game/static/js/main.dc633479.js.map",
     "787.81ffe0d6.chunk.js.map": "/f1-driver-memory-game/static/js/787.81ffe0d6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.dbc51954.css",
-    "static/js/main.27699cbf.js"
+    "static/css/main.c391a057.css",
+    "static/js/main.dc633479.js"
   ]
 }
